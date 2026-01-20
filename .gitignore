@@ -1,0 +1,34 @@
+# .gitignore for 00_Exp (Sandbox Repo)
+
+# --- CRITICAL: MEDICAL DATA SECURITY ---
+# NEVER commit medical/patient data to Git.
+# Explicitly ignoring common medical imaging formats.
+*.dcm
+*.nii
+*.nii.gz
+*.mhd
+*.raw
+*.nrrd
+
+# Safety net: Ignore data directories if accidentally copied here
+data/
+Data/
+datasets/
+
+# --- PYTHON & ENVIRONMENT ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.ipynb_checkpoints/
+
+# Virtual Environments (Conda/Venv)
+env/
+venv/
+.env
+
+# --- SYSTEM & IDE ---
+.DS_Store
+.vscode/
+*.log
+*.csv
