@@ -26,5 +26,4 @@ Strict adherence to GDPR and ethical guidelines:
 - `src/`: Reusable python modules for data loading and processing.
 
 ---
-*Maintained by Giacomo Da Re*
-*PhD Candidate in Universidad de Navarra*
+*Maintained by Giacomo Da Re, PhD Candidate in Universidad de Navarra*
