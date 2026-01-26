@@ -1,0 +1,43 @@
+name: base_PhdOncology_env
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - nodefaults      # CRITICAL: Blocks commercial Anaconda channels to avoid license warnings
+dependencies:
+  # --- CORE INFRASTRUCTURE ---
+  - python=3.10     # Stable version for medical deep learning (2026 standard)
+  - pip             # Required for packages not on conda
+  - mamba           # Keep mamba inside the env for easier management
+
+  # --- GPU ACCELERATION & PYTORCH (Conda managed) ---
+  # Installing via conda ensures CUDA drivers (cuDNN) are linked correctly
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+
+  # --- DATA SCIENCE STACK (Conda managed for speed) ---
+  - numpy
+  - pandas          # For clinical data (Excel/CSV) handling
+  - matplotlib      # Basic plotting
+  - seaborn         # Statistical data visualization
+  - scikit-learn    # Classic ML (SVM, Random Forest, K-Means)
+  - jupyterlab      # The IDE interface
+  - ipykernel       # Kernel to connect VS Code to this environment
+  
+  # --- MEDICAL IMAGING BASE ---
+  - simpleitk       # Robust image processing (C++ backend)
+  - nibabel         # Neuroimaging standard (.nii, .nii.gz) support
+
+  # --- RESEARCH SPECIFIC (Pip managed for latest versions) ---
+  # Using pip allows for faster updates on research-grade libraries
+  - pip:
+    - monai[all]    # Medical Open Network for AI (Full installation)
+    - wandb         # Weights & Biases: Experiment tracking & logging
+    - tqdm          # Progress bars for training loops
+    - einops        # Flexible tensor operations (vital for Vision Transformers)
+    - torchio       # 3D Data Augmentation specifically for MRI/CT
+    - openpyxl      # Engine to read Excel files with pandas
+    - itkwidgets    # Interactive 3D visualization inside notebooks
+    - pyradiomics
