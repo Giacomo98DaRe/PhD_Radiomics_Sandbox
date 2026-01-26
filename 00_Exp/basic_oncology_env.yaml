@@ -1,43 +1,42 @@
 name: base_PhdOncology_env
 channels:
-  - pytorch
-  - nvidia
-  - conda-forge
-  - nodefaults      # CRITICAL: Blocks commercial Anaconda channels to avoid license warnings
+  - radiomics       # PRIORITY 1: PyRadiomics official channel
+  - pytorch         # PRIORITY 2: PyTorch official channel
+  - nvidia          # PRIORITY 3: CUDA drivers
+  - conda-forge     # PRIORITY 4: Community standard (everything else)
+  - nodefaults      # CRITICAL: Avoid commercial Anaconda channel
 dependencies:
   # --- CORE INFRASTRUCTURE ---
-  - python=3.10     # Stable version for medical deep learning (2026 standard)
-  - pip             # Required for packages not on conda
-  - mamba           # Keep mamba inside the env for easier management
+  - python=3.9      # CRITICAL: Kept at 3.9 for PyRadiomics stability
+  - pip
+  - mamba
 
-  # --- GPU ACCELERATION & PYTORCH (Conda managed) ---
-  # Installing via conda ensures CUDA drivers (cuDNN) are linked correctly
+  # --- GPU ACCELERATION & PYTORCH ---
   - pytorch
   - torchvision
   - torchaudio
   - pytorch-cuda=12.1
 
-  # --- DATA SCIENCE STACK (Conda managed for speed) ---
-  - numpy
-  - pandas          # For clinical data (Excel/CSV) handling
-  - matplotlib      # Basic plotting
-  - seaborn         # Statistical data visualization
-  - scikit-learn    # Classic ML (SVM, Random Forest, K-Means)
-  - jupyterlab      # The IDE interface
-  - ipykernel       # Kernel to connect VS Code to this environment
-  
-  # --- MEDICAL IMAGING BASE ---
-  - simpleitk       # Robust image processing (C++ backend)
-  - nibabel         # Neuroimaging standard (.nii, .nii.gz) support
+  # --- MEDICAL IMAGING (Conda Managed) ---
+  - pyradiomics     # Radiomics feature extraction
+  - simpleitk       # Image I/O and processing (The "Assembler")
+  - nibabel         # NIfTI format handling
+  - pydicom         # DICOM tag parsing and header inspection
 
-  # --- RESEARCH SPECIFIC (Pip managed for latest versions) ---
-  # Using pip allows for faster updates on research-grade libraries
+  # --- DATA SCIENCE STACK ---
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - jupyterlab
+  - ipykernel
+  
+  # --- RESEARCH SPECIFIC (Pip Managed) ---
+  # Used for libraries not available or outdated on Conda
   - pip:
-    - monai[all]    # Medical Open Network for AI (Full installation)
-    - wandb         # Weights & Biases: Experiment tracking & logging
-    - tqdm          # Progress bars for training loops
-    - einops        # Flexible tensor operations (vital for Vision Transformers)
-    - torchio       # 3D Data Augmentation specifically for MRI/CT
-    - openpyxl      # Engine to read Excel files with pandas
-    - itkwidgets    # Interactive 3D visualization inside notebooks
-    - pyradiomics
+    - monai[all]    # Deep Learning for Healthcare
+    - wandb         # Experiment Tracking
+    - tqdm          # Progress bars
+    - einops        # Tensor operations
+    - torchio       # 3D Augmentation
