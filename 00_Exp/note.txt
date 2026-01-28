@@ -1,11 +1,3 @@
 Scope:
 
 Try the first exctraction of a Dicom file
-
-
-# ITK is smart: it looks for Series IDs within the files to understand 
-# which files belong to the same scan (handling mixed folders).
-series_ids = reader.GetGDCMSeriesIDs(dicom_folder) -> cosa fa questa istruzione?
-
-Da dove estratto quei metadata?
-Come viene effettivamente creata l'immagine 3D?
