@@ -1,0 +1,42 @@
+name: base_PhdOncology_env
+channels:
+  - radiomics       # PRIORITY 1: PyRadiomics official channel
+  - pytorch         # PRIORITY 2: PyTorch official channel
+  - nvidia          # PRIORITY 3: CUDA drivers
+  - conda-forge     # PRIORITY 4: Community standard (everything else)
+  - nodefaults      # CRITICAL: Avoid commercial Anaconda channel
+dependencies:
+  # --- CORE INFRASTRUCTURE ---
+  - python=3.9      # CRITICAL: Kept at 3.9 for PyRadiomics stability
+  - pip
+  - mamba
+
+  # --- GPU ACCELERATION & PYTORCH ---
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+
+  # --- MEDICAL IMAGING (Conda Managed) ---
+  - pyradiomics     # Radiomics feature extraction
+  - simpleitk       # Image I/O and processing (The "Assembler")
+  - nibabel         # NIfTI format handling
+  - pydicom         # DICOM tag parsing and header inspection
+
+  # --- DATA SCIENCE STACK ---
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - jupyterlab
+  - ipykernel
+  
+  # --- RESEARCH SPECIFIC (Pip Managed) ---
+  # Used for libraries not available or outdated on Conda
+  - pip:
+    - monai[all]    # Deep Learning for Healthcare
+    - wandb         # Experiment Tracking
+    - tqdm          # Progress bars
+    - einops        # Tensor operations
+    - torchio       # 3D Augmentation
