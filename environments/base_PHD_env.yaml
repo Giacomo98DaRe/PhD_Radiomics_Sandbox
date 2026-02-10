@@ -1,0 +1,41 @@
+name: base_PhdOncology_env
+channels:
+  - radiomics       # PRIORITÀ 1: Prende pyradiomics da qui
+  - pytorch
+  - nvidia
+  - conda-forge     # PRIORITÀ 4: Tutto il resto da qui
+  - nodefaults
+dependencies:
+  # --- CORE ---
+  - python=3.9      # <--- MODIFICA CRUCIALE (Era 3.10)
+  - pip
+  - mamba
+
+  # --- GPU & PYTORCH ---
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+
+  # --- MEDICAL IMAGING (Conda) ---
+  - pyradiomics     # Installato via Conda (Canale 'radiomics')
+  - simpleitk
+  - nibabel
+
+  # --- DATA SCIENCE ---
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - jupyterlab
+  - ipykernel
+  
+  # --- PIP ONLY ---
+  - pip:
+    - monai[all]
+    - wandb
+    - tqdm
+    - einops
+    - torchio
+    - dicom2nifti
