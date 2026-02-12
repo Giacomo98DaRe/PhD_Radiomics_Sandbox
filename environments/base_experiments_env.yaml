@@ -1,0 +1,46 @@
+name: base_experiments_env
+channels:
+  - radiomics       # Custom channel for radiomics libraries
+  - conda-forge     # Best for standard libs
+  - pytorch         # Official PyTorch channel 
+  - nvidia          # CUDA drivers and toolkits
+  - defaults        # Fallback
+
+dependencies:
+  # --- CORE & UTILS ---
+  - python=3.9      # Stable version needed for compatibility with pyradiomics
+  - pip
+  - wheel           
+
+  # --- DEEP LEARNING (GPU) ---
+  # Pytorch with CUDA 12.1 support
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+
+  # --- MEDICAL IMAGING (Base) ---
+  - simpleitk
+  - nibabel
+  - pydicom         # DICOM handling standard
+  - pyradiomics     # Extraction of radiomics features
+  - dicom2nifti     # Useful conversion tool
+
+  # --- DATA SCIENCE STACK ---
+  - numpy
+  - pandas
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - tqdm            # Progress bars
+
+  # --- DEVELOPMENT TOOLS ---
+  - jupyterlab
+  - ipykernel       # Kernel to run this env in Jupyter
+
+  # --- PIP DEPENDENCIES ---
+  # We use PIP for libraries that are updated faster there or cause Conda conflicts
+  - pip:
+    - monai[all]    # The standard framework for Medical Deep Learning
+    - wandb         # Experiment tracking (Weights & Biases)
+    - torchio       # Efficient data loading/augmentation for 3D medical images
