@@ -12,7 +12,7 @@ OUTPUT_ROOT = r"C:\Path\To\Anonymized_Output"
 
 # 3. Path to the mapping file downloaded from Drive (Excel or CSV)
 # Ensure columns are named 'NHC' and 'ID'
-MAPPING_FILE = r"C:\Path\To\patients_mapping.xlsx"
+MAPPING_FILE = r"C:\Path\To\patients_mapping.csv"
 
 # ================= MAPPING LOGIC =================
 def load_mapping(mapping_path):
@@ -20,7 +20,7 @@ def load_mapping(mapping_path):
     Loads the mapping file (NHC -> New Anonymous ID).
     Ensures NHC column is treated as string to match DICOM tags.
     """
-    print(f"🔄 Loading mapping file: {mapping_path}")
+    print(f"Loading mapping file: {mapping_path}")
     
     if mapping_path.endswith('.csv'):
         df = pd.read_csv(mapping_path, dtype=str)
@@ -32,7 +32,6 @@ def load_mapping(mapping_path):
     df.columns = df.columns.str.strip()
     
     # create dictionary: { 'Original_NHC': 'New_Anonymous_ID' }
-    # Example: { '289892': 'NCT07132658_1' }
     try:
         # Check if columns exist (case-sensitive)
         if 'NHC' not in df.columns or 'ID' not in df.columns:
@@ -79,8 +78,9 @@ def anonymize_dicom(dataset, new_id):
 
     # 3. Clean other standard sensitive tags (Best Practice)
     # Remove references to hospital or physicians that might indirectly identify patient
-    if 'InstitutionName' in dataset:
-        dataset.InstitutionName = "ANONYMIZED_SITE"
+    
+    # if 'InstitutionName' in dataset:
+    #     dataset.InstitutionName = "ANONYMIZED_SITE"
     if 'ReferringPhysicianName' in dataset:
         dataset.ReferringPhysicianName = ""
     if 'OperatorsName' in dataset:
