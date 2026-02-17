@@ -1,0 +1,12 @@
+# NAIARA/configs/anonymizer.yaml
+
+paths:
+
+  # Path to the directory containing the original data to be anonymized
+  input_dir: "" 
+
+  # Path to the directory where the anonymized data will be saved
+  output_dir: "" 
+
+  # Path to the CSV file that will store the mapping between original and anonymized patient IDs
+  mapping_file: "" 
