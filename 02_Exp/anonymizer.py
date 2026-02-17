@@ -79,8 +79,6 @@ def run_pipeline(config_yaml):
 
     # Walk through input directory
     for root, dirs, files in os.walk(input_root):
-        dirs.sort()  
-        files.sort()
         print(f"Processing folder: {os.path.basename(root)}")
         
         for file in files:
