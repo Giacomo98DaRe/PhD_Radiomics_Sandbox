@@ -25,6 +25,7 @@ dependencies:
   - pydicom         # DICOM handling standard
   - pyradiomics     # Extraction of radiomics features
   - dicom2nifti     # Useful conversion tool
+  - gdcm
 
   # --- DATA SCIENCE STACK ---
   - numpy
