@@ -1,0 +1,12 @@
+# NAIARA/configs/anonymizer.yaml
+
+paths:
+
+  # Path to the directory containing the original data to be anonymized
+  input_dir: "C:/Users/dosimetria4/Naiara_gdr/data/data_original/raw_Dataset" 
+
+  # Path to the directory where the anonymized data will be saved
+  output_dir: "C:/Users/dosimetria4/Naiara_gdr/data/data_anonymized" 
+
+  # Path to the CSV file that will store the mapping between original and anonymized patient IDs
+  mapping_file: "C:/Users/dosimetria4/Naiara_gdr/data/prove/patients_mapping.csv" 
