@@ -11,9 +11,7 @@
 *.nrrd
 
 # Safety net: Ignore data directories if accidentally copied here
-data/
-Data/
-datasets/
+data_trial/
 
 # --- PYTHON & ENVIRONMENT ---
 __pycache__/
